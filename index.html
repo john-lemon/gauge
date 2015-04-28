@@ -7,5 +7,19 @@
 </head>
 <body>
 
-<script type="text/javascript" src="script.js"></script>
+  <div id="gauge_wrap">
+    <div id="division">
+      <div class="dot"></div>
+    </div>
+    <svg id="gauge">
+      <path id="gauge_grey" fill="none" stroke-width="20"/>
+      <path id="gauge_yellow" fill="none" stroke-width="20"/>
+      <path id="gauge_red" fill="none" stroke-width="20"/>
+      <polygon id="gauge_arrow" points="0,155 155,150 155,160" style="fill:lime;stroke:purple;stroke-width:0" />
+    </svg>
+
+  </div>
+
+  <script type="text/javascript" src="script.js"></script>
+
 </body>

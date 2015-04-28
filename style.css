@@ -1,0 +1,110 @@
+
+.body {
+
+}
+
+#gauge_wrap {
+  position: absolute;
+  left: 100px;
+  top: 50px;
+}
+
+#gauge {
+  width: 320px;
+  height: 320px;
+}
+
+#gauge_grey {
+  stroke: #676767;
+}
+
+#gauge_yellow {
+  stroke: #ffa500;
+}
+
+#gauge_red {
+  stroke: #f00;
+}
+
+#gauge_arrow {
+    -webkit-transform-origin: right center;
+     -moz-transform-origin: right center;
+      -ms-transform-origin: right center;
+       -o-transform-origin: right center;
+          transform-origin: right center;
+    -webkit-animation-name: rotate;
+    -webkit-animation-duration: 4s;
+    -webkit-animation-iteration-count: infinite;
+    animation-name: rotate;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+}
+
+@-webkit-keyframes rotate {
+    0%   {
+    -webkit-transform: rotate(0deg);
+       -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+         -o-transform: rotate(0deg);
+            transform: rotate(0deg);
+      }
+    50%  {
+    -webkit-transform: rotate(180deg);
+       -moz-transform: rotate(180deg);
+        -ms-transform: rotate(180deg);
+         -o-transform: rotate(180deg);
+            transform: rotate(180deg);
+      }
+    100% {
+    -webkit-transform: rotate(0deg);
+       -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+         -o-transform: rotate(0deg);
+            transform: rotate(0deg);
+      }
+}
+
+@keyframes rotate {
+    0%   {
+    -webkit-transform: rotate(0deg);
+       -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+         -o-transform: rotate(0deg);
+            transform: rotate(0deg);
+      }
+    50%  {
+    -webkit-transform: rotate(90deg);
+       -moz-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+         -o-transform: rotate(90deg);
+            transform: rotate(90deg);
+      }
+    100% {
+    -webkit-transform: rotate(0deg);
+       -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+         -o-transform: rotate(0deg);
+            transform: rotate(0deg);
+      }
+}
+
+
+#division {
+  position: absolute;
+  left: -20px;
+  top: -20px;
+  display: inline-block;
+  width: 360px;
+  height: 360px;
+  -webkit-border-radius: 50%;
+          border-radius: 50%;
+  border: 1px solid #f0f;
+}
+
+.dot {
+  position: absolute;
+  display: inline-block;
+  width: 2px;
+  height: 2px;
+  background: #000;
+}
