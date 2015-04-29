@@ -30,41 +30,52 @@ document.getElementById("gauge_red").setAttribute("d", drawArc(160, 160, 150, 90
 function division(params) {
 
   var values = {
+    tags: [0,1,2,3,4,5,6],
     radius: 180,
-    divisionPoints: 5,
     divisionSep: 3
   };
-
   for (a in params) {values[a] = params[a];}
-  console.log(values);
 
 
-  var division = document.getElementById('division'),
+  var divisionPoints = values.tags.length,
+      division = document.getElementById('division'),
+      divisionSpecial = document.getElementById('division-special'),
       label = document.getElementsByClassName('dot')[0],
-      radius = 180,
-      labels = (values.divisionPoints-1)*values.divisionSep + values.divisionPoints;
 
-  for (var i=0; i<labels; i++) {
-    var clone = label.cloneNode(true),
-        alpha = 240/labels,
-        rad = alpha*i*Math.PI/180,
-        cloneX = radius * ( 1 - Math.cos(rad) ),
-        cloneY = radius * (1 - Math.sin(rad) );
-    clone.style.left = cloneX+'px';
-    clone.style.top = cloneY+'px';
+      radius = 160,
+
+      labelsCounter = (divisionPoints-1)*values.divisionSep + divisionPoints;
+      height = division.clientHeight,
+      width = division.clientWidth,
+      step = (4*Math.PI/3) / labelsCounter,
+      angle = 210,
+      k = 0,
+
+      console.log(step);
+
+  for (var i=0; i<labelsCounter; i++) {
+    var clone = label.cloneNode(true);
 
     if (i % (values.divisionSep+1) === 0) {
       clone.className += ' special'
-      var num = document.createTextNode(i/(values.divisionSep+1));
-      clone.appendChild(num);
+      var tag = document.createTextNode(values.tags[k]);
+      k = k+1;
+      // clone.style.transform = "rotate("+(angle*i)+"deg)";
+      clone.appendChild(tag);
     }
 
+    var cloneX = Math.round(width/2 + radius * Math.cos(angle) - clone.clientWidth/2);
+        cloneY = Math.round(height/2 + radius * Math.sin(angle) - clone.clientHeight/2);
+    clone.style.left = cloneX+'px';
+    clone.style.top = cloneY+'px';
+
     division.appendChild(clone);
+    angle += step;
   }
 }
 
 division({
-  divisionPoints: 4,
-  divisionSep: 2
+  tags: [0,1,2,3, 4, 5, 6],
+  divisionSep: 9
 })
 
