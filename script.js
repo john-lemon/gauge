@@ -27,13 +27,22 @@ document.getElementById("gauge_yellow").setAttribute("d", drawArc(160, 160, 150,
 document.getElementById("gauge_red").setAttribute("d", drawArc(160, 160, 150, 90, 120));
 
 
+function division(params) {
 
-function division(divisionPoints,divisionSep) {
+  var values = {
+    radius: 180,
+    divisionPoints: 5,
+    divisionSep: 3
+  };
+
+  for (a in params) {values[a] = params[a];}
+  console.log(values);
+
 
   var division = document.getElementById('division'),
       label = document.getElementsByClassName('dot')[0],
       radius = 180,
-      labels = (divisionPoints-1)*divisionSep + divisionPoints;
+      labels = (values.divisionPoints-1)*values.divisionSep + values.divisionPoints;
 
   for (var i=0; i<labels; i++) {
     var clone = label.cloneNode(true),
@@ -44,15 +53,18 @@ function division(divisionPoints,divisionSep) {
     clone.style.left = cloneX+'px';
     clone.style.top = cloneY+'px';
 
-    if (i % (divisionSep+1) === 0) {
+    if (i % (values.divisionSep+1) === 0) {
       clone.className += ' special'
-      var num = document.createTextNode(i/(divisionSep+1));
+      var num = document.createTextNode(i/(values.divisionSep+1));
       clone.appendChild(num);
     }
 
     division.appendChild(clone);
   }
-
 }
 
-division(5,3)
+division({
+  divisionPoints: 4,
+  divisionSep: 2
+})
+
