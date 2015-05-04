@@ -11,15 +11,15 @@ function polarToDecart(centerX, centerY, radius, angleInDegrees) {
 
 function drawArc(x, y, radius, startAngle, endAngle){
 
-    var start = polarToDecart(x, y, radius, endAngle),
-        end = polarToDecart(x, y, radius, startAngle),
-        arcSweep = endAngle - startAngle <= 180 ? "0" : "1",
-        d = [
-          "M", start.x, start.y,
-          "A", radius, radius, 0, arcSweep, 0, end.x, end.y
-        ].join(" ");
+  var start = polarToDecart(x, y, radius, endAngle),
+      end = polarToDecart(x, y, radius, startAngle),
+      arcSweep = endAngle - startAngle <= 180 ? "0" : "1",
+      d = [
+        "M", start.x, start.y,
+        "A", radius, radius, 0, arcSweep, 0, end.x, end.y
+      ].join(" ");
 
-    return d;
+  return d;
 }
 
 document.getElementById("gauge_grey").setAttribute("d", drawArc(160, 160, 150, -120, 120));
@@ -55,15 +55,17 @@ function division(params) {
   for (var i=0; i<labelsCounter; i++) {
     var clone = label.cloneNode(true);
     var special = false;
+
     if (i % (values.divisionSep+1) === 0) {
       clone.className += ' special-dot'
       var tag = document.createElement('span');
       tag.className = 'value';
       var tagText = document.createTextNode(values.tags[k])
       tag.appendChild(tagText);
+
       k = k+1;
-      // clone.style.transform = "rotate("+(angle*i)+"deg)";
       clone.appendChild(tag);
+
       special = true;
     }
 
@@ -76,27 +78,31 @@ function division(params) {
     var pad = 20;
 
     if (special == true) {
-      var newCloneX = Math.abs(cloneX - radius - 20);
-      var newCloneY = Math.abs(cloneY - radius - 20);
-      corner = Math.atan(newCloneY/newCloneX);
-      if (cloneX < radius+20) {
-        cloneX -= pad * Math.cos(corner);
-      }
-      else {
-       cloneX += pad * Math.cos(corner);
-      }
+      rotateAngle = Math.atan( Math.abs(radius + 20 - cloneY)/Math.abs(radius + 20 - cloneX)) *57.3
+      console.log(k)
+      console.log(rotateAngle);
+      console.log('=======')
 
-      if (cloneY > radius +20 ) {
-        cloneY += pad * Math.sin(corner);
+      if (cloneX < radius+20) {
+        if (cloneY < radius +20 ) {
+          rotateAngle = 180+rotateAngle
+        } else {
+          rotateAngle = 180-rotateAngle
+        }
       }
       else {
-        cloneY -= pad * Math.sin(corner);
+        if (cloneY < radius +20 ) {
+          rotateAngle = -rotateAngle
+        }
       }
+      clone.style.transform = "rotate("+rotateAngle+"deg)";
+      tag.style.transform = "rotate("+ -rotateAngle +"deg)";
+      tag.style.top = -tag.offsetHeight/2+'px';
     }
 
-    clone.style.width = tag.offsetWidth+'px';
+
     clone.style.left = cloneX+'px';
-    clone.style.top = (cloneY - clone.offsetWidth/2 )+'px';
+    clone.style.top = (cloneY - clone.offsetHeight/2 )+'px';
     angle += step;
 
   }
@@ -107,7 +113,7 @@ function division(params) {
 }
 
 division({
-  tags: ['0', '1', '2', '3', '4', '5', '6'],
+  tags: ['0', '1', '2', '3', '4', '5', '6','7','8','9'],
   divisionSep: 9
 })
 
