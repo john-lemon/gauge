@@ -5,40 +5,40 @@ division = new division({
   divisionSep: 9
 })
 
-function polarToDecart(centerX, centerY, radius, angleInDegrees) {
-  var angleInRadians = (angleInDegrees-90) * Math.PI / 180;
-  return {
-    x: centerX + (radius * Math.cos(angleInRadians)),
-    y: centerY + (radius * Math.sin(angleInRadians))
-  };
-}
-
-function drawArc(x, y, radius, startAngle, endAngle){
-  var start = polarToDecart(x, y, radius, endAngle),
-      end = polarToDecart(x, y, radius, startAngle),
-      arcSweep = endAngle - startAngle <= 180 ? '0' : '1',
-      d = [
-        'M', start.x, start.y,
-        'A', radius, radius, 0, arcSweep, 0, end.x, end.y
-      ].join(' ');
-  return d;
-}
-
-
-function drawArrow(radius, arrowWidth) {
-  var points = [
-        -20,radius,radius,radius-arrowWidth/2,radius,radius+arrowWidth/2
-      ].join(',');
-  return points;
-}
-
-function setAttributes(el, attrs) {
-  for(var key in attrs) {
-    el.setAttribute(key, attrs[key]);
-  }
-}
-
 function division(params) {
+
+  function polarToDecart(centerX, centerY, radius, angleInDegrees) {
+    var angleInRadians = (angleInDegrees-90) * Math.PI / 180;
+    return {
+      x: centerX + (radius * Math.cos(angleInRadians)),
+      y: centerY + (radius * Math.sin(angleInRadians))
+    };
+  }
+
+  function drawArc(x, y, radius, startAngle, endAngle){
+    var start = polarToDecart(x, y, radius, endAngle),
+        end = polarToDecart(x, y, radius, startAngle),
+        arcSweep = endAngle - startAngle <= 180 ? '0' : '1',
+        d = [
+          'M', start.x, start.y,
+          'A', radius, radius, 0, arcSweep, 0, end.x, end.y
+        ].join(' ');
+    return d;
+  }
+
+
+  function drawArrow(radius, arrowWidth) {
+    var points = [
+          -20,radius,radius,radius-arrowWidth/2,radius,radius+arrowWidth/2
+        ].join(',');
+    return points;
+  }
+
+  function setAttributes(el, attrs) {
+    for(var key in attrs) {
+      el.setAttribute(key, attrs[key]);
+    }
+  }
 
   var gaugeWrap = document.getElementById('gauge_wrap'),
       gaugeArrow = document.createElementNS("http://www.w3.org/2000/svg", 'svg'),
@@ -75,15 +75,14 @@ function division(params) {
     divisionSep: 3,
     arrowWidth: 8,
   };
-  for (a in params) {this.values[a] = params[a];}
 
+  for (a in params) {this.values[a] = params[a];}
       radius = this.values.radius,
       divisionPoints = this.values.tags.length,
       labelsCounter = (divisionPoints-1)*this.values.divisionSep + divisionPoints;
       angle = 210,
       step = (4*Math.PI/3) / labelsCounter, // 4/3 - for 240 gauge
       k = 0;
-
   division.style.width = radius*2 +40 + 'px';
   division.style.height = radius*2 +40 + 'px';
   gauge.style.width = radius*2 +40 + 'px';
@@ -124,7 +123,6 @@ function division(params) {
 
     var cloneX = width/2 + radius * Math.cos(angle),
         cloneY = height/2 + radius * Math.sin(angle);
-    var pad = 20;
 
     if (special == true) {
       rotateAngle = Math.atan( Math.abs(radius + 20 - cloneY)/Math.abs(radius + 20 - cloneX)) *57.3;
@@ -155,7 +153,7 @@ function division(params) {
     var entry = (this.values.tags.indexOf(value) != -1)
     if (type == 'string') {
       if (entry == true) {
-        var i = this.values.tags.indexOf(value),
+        var i = this.values.tags.indexOf(value);
         gaugeArrow.style.transform = 'rotate('+(180+rotateAngles[i])+'deg)';
       }
       else if (value >=0 && value <= 360) {
