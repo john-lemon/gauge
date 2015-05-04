@@ -10,32 +10,39 @@
 }
 
 #gauge {
-  width: 320px;
-  height: 320px;
+  fill: none;
 }
 
-#gauge_grey {
+#gauge__center {
+  fill: #1e98e4;
+}
+
+#gauge__grey {
   stroke: #676767;
 }
 
-#gauge_yellow {
+#gauge__yellow {
   stroke: #ffa500;
 }
 
-#gauge_red {
+#gauge__red {
   stroke: #f00;
 }
 
-#gauge_arrow {
+#gauge__polygon {
+  fill: #1e98e4;
+}
+
+#gauge__arrow {
   left: 0px;
   top: 0px;
   position: absolute;
   -webkit-animation-name: rotate;
   -webkit-animation-duration: 4s;
-  -webkit-animation-iteration-count: infinite;
+  /*-webkit-animation-iteration-count: infinite;*/
   animation-name: rotate;
   animation-duration: 4s;
-  animation-iteration-count: infinite;
+  /*animation-iteration-count: infinite;*/
 }
 
 @-webkit-keyframes rotate {
@@ -89,7 +96,7 @@
 
 #division {
   position: absolute;
-  left: -20px;
+  left: -22px;
   top: -20px;
   display: inline-block;
   width: 360px;
@@ -106,13 +113,12 @@
   display: inline-block;
   width: 2px;
   height: 2px;
-  background: #666666;
+  background: #d9d9d9;
 }
 
 .special-dot {
   background: transparent;
-  width: 20px;
-  height: 2px;
+  width: 4px;
   /*width: auto;*/
   /*height:auto;*/
   background: #f00;
