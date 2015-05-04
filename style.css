@@ -27,17 +27,15 @@
 }
 
 #gauge_arrow {
-    -webkit-transform-origin: right center;
-     -moz-transform-origin: right center;
-      -ms-transform-origin: right center;
-       -o-transform-origin: right center;
-          transform-origin: right center;
-    -webkit-animation-name: rotate;
-    -webkit-animation-duration: 4s;
-    -webkit-animation-iteration-count: infinite;
-    animation-name: rotate;
-    animation-duration: 4s;
-    animation-iteration-count: infinite;
+  left: 0px;
+  top: 0px;
+  position: absolute;
+  -webkit-animation-name: rotate;
+  -webkit-animation-duration: 4s;
+  -webkit-animation-iteration-count: infinite;
+  animation-name: rotate;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
 }
 
 @-webkit-keyframes rotate {
@@ -108,12 +106,34 @@
   display: inline-block;
   width: 2px;
   height: 2px;
-  background: #000;
+  background: #666666;
 }
 
-.dot.special {
-  width: 20px;
-  height: 20px;
+.special-dot {
+  background: transparent;
+  /*width: 20px;
+  height: 20px;*/
+  /*width: auto;*/
+  height: 15px;
   background: #f00;
+  /*line-height: 0;*/
+  text-align: center;
+  max-width: 200px;
+  font-family: Tahoma, Geneva, sans-serif;
+  font-size: 15px;
+  color: #666;
 }
 
+#test {
+  /*-webkit-transform-origin: right center;
+     -moz-transform-origin: right center;
+      -ms-transform-origin: right center;
+       -o-transform-origin: right center;
+          transform-origin: right center;*/
+    -webkit-animation-name: rotate;
+    -webkit-animation-duration: 4s;
+    -webkit-animation-iteration-count: infinite;
+    animation-name: rotate;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+}
