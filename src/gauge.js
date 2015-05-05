@@ -46,11 +46,6 @@ function gauge(params) {
     this.values[a] = params[a];
   }
 
-
-  // if (!gaugeWrap) {
-  //   gaugeWrap = document.body;
-  // }
-
   var gaugeWrap = document.createElement('div'),
       gaugeArrow = document.createElementNS("http://www.w3.org/2000/svg", 'svg'),
       gaugePolygon = document.createElementNS("http://www.w3.org/2000/svg", 'polygon'),
@@ -84,9 +79,8 @@ function gauge(params) {
   if (!this.values.block) {
     document.body.appendChild(gaugeWrap);
   } else {
-    document.getElementById(block).appendChild(gaugeWrap);
+    document.getElementById(this.values.block).appendChild(gaugeWrap);
   }
-
 
 
   if (this.values.degrees == true) {
