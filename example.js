@@ -6,5 +6,5 @@ gauge = new gauge({
 gauge.setValue('deg','0');
 
 setTimeout(function(){
-  gauge.setValue('string','7');
+  gauge.setValue('deg','90');
 }, 2000)

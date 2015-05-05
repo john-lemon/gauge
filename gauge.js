@@ -38,7 +38,8 @@ function gauge(params) {
     radius: 160,
     divisionSep: 3,
     arrowWidth: 8,
-    inside: true
+    inside: true,
+    degrees: true
   };
 
   for (a in params) {
@@ -81,6 +82,11 @@ function gauge(params) {
   gauge.appendChild(gaugeRed);
 
   document.getElementById('test').appendChild(gaugeWrap);
+
+  if (this.values.degrees == true) {
+    this.values.tags = [-30, 0, 30, 60, 90, 120, 150, 180, 210];
+    this.values.divisionSep = 9;
+  }
 
   var radius = this.values.radius,
       divisionPoints = this.values.tags.length,
