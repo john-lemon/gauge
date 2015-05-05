@@ -6,7 +6,10 @@
     "Roman Dmiterko] <dmiterko35@gmail.com>"
   ],
   "description": "Just simple gauge",
-  "main": "src/gauge.js",
+  "main": [
+    "src/gauge.js",
+    "src/gauge.css"
+  ],
   "keywords": [
     "Gauge"
   ],
@@ -16,6 +19,7 @@
     "node_modules",
     "bower_components",
     "test",
-    "tests"
+    "tests",
+    "example"
   ]
 }
