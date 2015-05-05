@@ -1,11 +1,4 @@
-
-
-division = new division({
-  tags: ['0', '1', '2', '3', '4', '5', '6','7','8','9'],
-  divisionSep: 9
-})
-
-function division(params) {
+function gauge(params) {
 
   function polarToDecart(centerX, centerY, radius, angleInDegrees) {
     var angleInRadians = (angleInDegrees-90) * Math.PI / 180;
@@ -40,7 +33,24 @@ function division(params) {
     }
   }
 
-  var gaugeWrap = document.getElementById('gauge_wrap'),
+  this.values = {
+    tags: [0,1,2,3,4,5,6],
+    radius: 160,
+    divisionSep: 3,
+    arrowWidth: 8,
+    inside: true
+  };
+
+  for (a in params) {
+    this.values[a] = params[a];
+  }
+
+
+  // if (!gaugeWrap) {
+  //   gaugeWrap = document.body;
+  // }
+
+  var gaugeWrap = document.createElement('div'),
       gaugeArrow = document.createElementNS("http://www.w3.org/2000/svg", 'svg'),
       gaugePolygon = document.createElementNS("http://www.w3.org/2000/svg", 'polygon'),
       division = document.createElement('div'),
@@ -50,15 +60,16 @@ function division(params) {
       gaugeGrey = document.createElementNS("http://www.w3.org/2000/svg", 'path'),
       gaugeRed = document.createElementNS("http://www.w3.org/2000/svg", 'path'),
       gaugeYellow = document.createElementNS("http://www.w3.org/2000/svg", 'path');
-  setAttributes(gaugeArrow, {'x':'0', 'y':'0', 'id':'gauge__arrow'});
-  gaugePolygon.setAttribute('id','gauge__polygon');
-  division.setAttribute('id','division');
+  gaugeWrap.setAttribute('class','gauge__wrap');
+  setAttributes(gaugeArrow, {'x':'0', 'y':'0', 'class':'gauge__arrow'});
+  gaugePolygon.setAttribute('class','gauge__polygon');
+  division.setAttribute('class','division');
   dot.setAttribute('class','dot');
-  setAttributes(gauge, {'id':'gauge', 'x':'0px','y':'0px'});
-  setAttributes(gaugeCenter, {'id':'gauge__center', 'r':'7'});
-  setAttributes(gaugeGrey, {'id':'gauge__grey', 'stroke-width':'3'})
-  setAttributes(gaugeYellow, {'id':'gauge__yellow', 'stroke-width':'3'})
-  setAttributes(gaugeRed, {'id':'gauge__red', 'stroke-width':'3'});
+  setAttributes(gauge, {'class':'gauge', 'x':'0px','y':'0px'});
+  setAttributes(gaugeCenter, {'class':'gauge__center', 'r':'7'});
+  setAttributes(gaugeGrey, {'class':'gauge__grey', 'stroke-width':'3'})
+  setAttributes(gaugeYellow, {'class':'gauge__yellow', 'stroke-width':'3'})
+  setAttributes(gaugeRed, {'class':'gauge__red', 'stroke-width':'3'});
   gaugeWrap.appendChild(gaugeArrow);
   gaugeWrap.appendChild(division);
   gaugeWrap.appendChild(gauge);
@@ -69,20 +80,15 @@ function division(params) {
   gauge.appendChild(gaugeYellow);
   gauge.appendChild(gaugeRed);
 
-  this.values = {
-    tags: [0,1,2,3,4,5,6],
-    radius: 160,
-    divisionSep: 3,
-    arrowWidth: 8,
-  };
+  document.getElementById('test').appendChild(gaugeWrap);
 
-  for (a in params) {this.values[a] = params[a];}
-      radius = this.values.radius,
+  var radius = this.values.radius,
       divisionPoints = this.values.tags.length,
       labelsCounter = (divisionPoints-1)*this.values.divisionSep + divisionPoints;
       angle = 210,
-      step = (4*Math.PI/3) / labelsCounter, // 4/3 - for 240 gauge
+      step = (4*Math.PI/3) / labelsCounter, // 4/3 - for 240 deg gauge
       k = 0;
+
   division.style.width = radius*2 +40 + 'px';
   division.style.height = radius*2 +40 + 'px';
   gauge.style.width = radius*2 +40 + 'px';
@@ -93,15 +99,20 @@ function division(params) {
   gaugeCenter.setAttribute('cx',radius);
   gaugeCenter.setAttribute('cy',radius);
 
-  document.getElementById('gauge__grey').setAttribute('d', drawArc(radius, radius, radius-10, -120, 120));
-  document.getElementById('gauge__yellow').setAttribute('d', drawArc(radius, radius, radius-10, 60, 90));
-  document.getElementById('gauge__red').setAttribute('d', drawArc(radius, radius, radius-10, 90, 120));
-  document.getElementById('gauge__polygon').setAttribute('points', drawArrow(radius, this.values.arrowWidth));
+  gaugeGrey.setAttribute('d', drawArc(radius, radius, radius-10, -120, 120));
+  gaugeYellow.setAttribute('d', drawArc(radius, radius, radius-10, 60, 90));
+  gaugeRed.setAttribute('d', drawArc(radius, radius, radius-10, 90, 120));
+  gaugePolygon.setAttribute('points', drawArrow(radius, this.values.arrowWidth));
 
   var height = division.clientHeight,
-      width = division.clientWidth;
+      width = division.clientWidth,
+      rotateAngles = [];
 
-  var rotateAngles = [];
+  if (this.values.inside == true) {
+    this.values.inside = 20
+  } else {
+    this.values.inside = 0
+  }
 
   for (var i=0; i<labelsCounter; i++) {
     var clone = dot.cloneNode(true);
@@ -121,8 +132,8 @@ function division(params) {
     division.appendChild(clone);
 
 
-    var cloneX = width/2 + radius * Math.cos(angle),
-        cloneY = height/2 + radius * Math.sin(angle);
+    var cloneX = width/2 + (radius - this.values.inside) * Math.cos(angle),
+        cloneY = height/2 + (radius - this.values.inside) * Math.sin(angle);
 
     if (special == true) {
       rotateAngle = Math.atan( Math.abs(radius + 20 - cloneY)/Math.abs(radius + 20 - cloneX)) *57.3;
@@ -149,6 +160,8 @@ function division(params) {
     angle += step;
   }
 
+
+
   this.setValue = function(type, value) {
     var entry = (this.values.tags.indexOf(value) != -1)
     if (type == 'string') {
@@ -165,12 +178,12 @@ function division(params) {
       gaugeArrow.style.transform = 'rotate('+ value+'deg)';
     }
     else {
-      console.log('Value type error')
+      console.log('Value error')
     }
   }
 
 }
 
-division.setValue('deg','0');
+
 
 
