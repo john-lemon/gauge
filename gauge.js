@@ -81,7 +81,13 @@ function gauge(params) {
   gauge.appendChild(gaugeYellow);
   gauge.appendChild(gaugeRed);
 
-  document.getElementById('test').appendChild(gaugeWrap);
+  if (!this.values.block) {
+    document.body.appendChild(gaugeWrap);
+  } else {
+    document.getElementById(block).appendChild(gaugeWrap);
+  }
+
+
 
   if (this.values.degrees == true) {
     this.values.tags = [-30, 0, 30, 60, 90, 120, 150, 180, 210];
