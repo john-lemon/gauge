@@ -1,0 +1,22 @@
+{
+  "name": "gauge",
+  "version": "0.0.1",
+  "description": "Just simple gauge",
+  "main": "src/gauge.js",
+  "directories": {
+    "example": "example"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/john-lemon/gauge.git"
+  },
+  "keywords": [
+    "Gauge"
+  ],
+  "author": "Roman Dmiterko <dmiterko35@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/john-lemon/gauge/issues"
+  },
+  "homepage": "https://github.com/john-lemon/gauge"
+}
