@@ -1,5 +1,7 @@
 # gauge.js
 
+![Gauge](gauge.png)
+
 Простая библиотека для отображения значений на шкале.
 Примеры из readme в действии: http://john-lemon.github.io/gauge/
 

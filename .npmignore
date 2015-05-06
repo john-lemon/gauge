@@ -3,3 +3,4 @@ component.json
 index.html
 gulpfile.js
 src
+*.png

@@ -25,6 +25,7 @@
     "index.html",
     "gulpfile.js",
     "package.json",
-    "src"
+    "src",
+    "*.png"
   ]
 }
