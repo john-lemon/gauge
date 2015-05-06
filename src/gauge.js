@@ -34,12 +34,12 @@ function gauge(params) {
   }
 
   this.values = {
-    tags: [0,1,2,3,4,5,6],
+    tags: [0,1,2,3,4,5,6,7,8,9],
     radius: 160,
-    divisionSep: 3,
+    divisionSep: 9,
     arrowWidth: 8,
-    inside: true,
-    degrees: true
+    inside: false,
+    degrees: false
   };
 
   for (a in params) {
@@ -96,7 +96,7 @@ function gauge(params) {
       k = 0;
 
   division.style.width = radius*2 +40 + 'px';
-  division.style.height = radius*2 +40 + 'px';
+  division.style.height = radius*2 + 'px';
   gauge.style.width = radius*2 +40 + 'px';
   gauge.style.height = radius*2 +40 + 'px';
   gaugeArrow.style.width = radius*2  + 'px';

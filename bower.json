@@ -7,8 +7,8 @@
   ],
   "description": "Just simple gauge",
   "main": [
-    "src/gauge.js",
-    "src/gauge.css"
+    "build/gauge.js",
+    "build/gauge.css"
   ],
   "keywords": [
     "Gauge"

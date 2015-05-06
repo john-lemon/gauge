@@ -1,12 +1,9 @@
 
-.body {
-
-}
 
 .gauge__wrap {
-  position: absolute;
-  left: 100px;
-  top: 50px;
+  position: relative;
+  margin-left: 20px;
+  top: 20px;
 }
 
 .gauge {
@@ -48,7 +45,6 @@
 .division {
   position: absolute;
   left: -22px;
-  top: -20px;
   display: inline-block;
   width: 360px;
   height: 360px;

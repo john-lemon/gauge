@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>Gauge</title>
+  <link rel="stylesheet" type="text/css" href="build/gauge.min.css">
+  <style>
+    body {
+      font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif;
+      font-size: 18px;
+    }
+    h1 {
+      font-size: 40px;
+    }
+    p {
+      font-size: 16px;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 14px;
+      line-height: 1.45;
+      background-color: #f7f7f7;
+      border-radius: 3px;
+    }
+    .page {
+      position: relative;
+      width: 940px;
+      height: 1000px;
+      margin: 0 auto;
+    }
+    .gauge__wrap {
+      margin-top: 30px;
+      margin-bottom: -30px;
+    }
+    #gauge {
+      display: inline-block;
+    }
+
+    #gauge_four {
+      float: left;
+    }
+
+    button {
+      height: 30px;
+      background: #FFF;
+      border: 1px solid #808080;
+      margin: 10px;
+      -webkit-border-radius: 3px;
+              border-radius: 3px;
+      -webkit-box-shadow: 1px 1px 1px 1px #ccc;
+              box-shadow: 1px 1px 1px 1px #ccc;
+    }
+
+    button:focus {
+      outline-style: none;
+    }
+
+    button:active {
+      outline-style: none;
+      -webkit-transform: translateY(1px);
+         -moz-transform: translateY(1px);
+          -ms-transform: translateY(1px);
+           -o-transform: translateY(1px);
+              transform: translateY(1px);
+      -webkit-box-shadow: none;
+              box-shadow: none;
+    }
+
+    .clear {
+      clear: both;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <h1>gauge.js</h1>
+    <p>Простая библиотека для отображения значений на шкале.</p>
+
+    <h2>Установка</h2>
+    <h3>Bower</h3>
+    <pre>bower install https://github.com/john-lemon/gauge.git</pre>
+    <h3>npm</h3>
+    <pre>npm install https://github.com/john-lemon/gauge.git</pre>
+    <h3>Или просто добавить скрипт на страницу</h3>
+    <pre>&#60;script type="text/javascript" src="build/gauge.min.js"&#62;&#60;/script&#62;</pre>
+
+    <h2>Начало использования</h2>
+    <p>Простое добавление в конец тега &#60;body&#62;</p>
+    <pre>gauge = new gauge()</pre>
+    <p>Для добавления в DOM-элемент необходимо указать его id</p>
+    <pre>gauge = new gauge({<br>  block: 'blockId'<br>})</pre>
+    <h2>Параметры</h2>
+    <p>Набор лейблов для отображения и количество промежуточных точке</p>
+    <pre>gauge = new gauge({<br>  tags: ['Tag', 'Second Tag', 'Third Tag', 'Last Tag'] <br>  divisionSep: 19<br>})</pre>
+    <div id="gauge_one"></div>
+
+    <p>Выбор радиуса шкалы</p>
+    <pre>gauge = new gauge({<br>  radius: 100 <br>})</pre>
+    <div id="gauge_two"></div>
+
+    <p>Отображение шкалы в градусах, а также отображение меток внутри и снаружи</p>
+    <pre>gauge = new gauge({<br>  degrees: true <br>  inside: true<br>})</pre>
+    <div id="gauge_three"></div>
+
+    <h3>Значения по умолчанию</h3>
+    <pre>tags: [0,1,2,3,4,5,6,7,8,9], <br>radius: 160, <br>divisionSep: 9, <br>arrowWidth: 8, <br>inside: false, <br>degrees: false</pre>
+
+    <h2>Методы</h2>
+    <p>Изменить текущее значение можно следущим образом</p>
+    <pre>gauge.setValue('type','value')</pre>
+    <p>'type' - тип значения. Варианты: 'string', 'deg'</p>
+    <p>'string' - если новое значение находится в списке значений tags</p>
+    <p>'deg' - если вы просто хотите повернуть стрелку на нужный угол</p>
+    <p>Например:</p>
+    <pre>gauge.setValue('string','5') <i>// повернет стрелку к значению '5'</i><br>gauge.setValue('deg','60') <i>// повернет стрелку на 60 градусов</i></pre>
+    <div id="gauge_four"></div>
+    <div class="buttons">
+      <button onClick="toFive()">К значению 5</button>
+      <button onClick="to60()">К 60 градусам</button>
+    </div>
+
+
+  </div>
+
+
+
+  <script type="text/javascript" src="build/gauge.min.js"></script>
+
+  <script type="text/javascript">
+
+    gaugeOne = new gauge({
+      block: 'gauge_one',
+      tags: ['Tag', 'Second Tag', 'Third Tag', 'Last Tag'],
+      divisionSep: 9
+    });
+
+    gaugeTwo = new gauge({
+      block: 'gauge_two',
+      radius: 100
+    })
+
+    gaugeThree = new gauge({
+      block: 'gauge_three',
+      radius: 160,
+      degrees: true,
+      inside: true
+    });
+
+    gaugeFour= new gauge({
+      block: 'gauge_four',
+    });
+
+    function toFive() {
+      gaugeFour.setValue('string', 90)
+    }
+
+    function to60() {
+      gaugeFour.setValue('deg', '60')
+    }
+
+  </script>
+
+</body>

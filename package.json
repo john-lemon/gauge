@@ -2,7 +2,7 @@
   "name": "gauge",
   "version": "0.0.1",
   "description": "Just simple gauge",
-  "main": "src/gauge.js",
+  "main": "build/gauge.js",
   "directories": {
     "example": "example"
   },
