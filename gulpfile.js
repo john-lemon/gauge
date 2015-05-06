@@ -3,13 +3,14 @@ var jsmin = require('gulp-uglify');
 var cssmin = require('gulp-minify-css');
 var rename = require('gulp-rename');
 
+
 gulp.task('compress-js', function(){
   gulp.src('src/*.js')
     .pipe(jsmin())
     .pipe(rename({
       suffix: '.min'
     }))
-    .pipe(gulp.dest('dist'))
+    .pipe(gulp.dest('build'))
 })
 
 gulp.task('compress-css', function(){
@@ -18,7 +19,12 @@ gulp.task('compress-css', function(){
     .pipe(rename({
       suffix: '.min'
     }))
-    .pipe(gulp.dest('dist'))
-})
+    .pipe(gulp.dest('build'))
+});
 
-gulp.task('default', ['compress-js', 'compress-css']);
+gulp.task('watch', function(){
+  gulp.watch("src/*.js",['compress-js']);
+  gulp.watch("src/*.css",['compress-css']);
+});
+
+gulp.task('default', ['compress-js', 'compress-css', 'watch']);

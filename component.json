@@ -6,6 +6,6 @@
     "Roman Dmiterko] <dmiterko35@gmail.com>"
   ],
   "description": "Just simple gauge",
-  "scripts": ["dist/gauge.min.js"],
-  "styles": ["dist/gaude.min.js"],
+  "scripts": ["build/gauge.min.js"],
+  "styles": ["build/gauge.min.css"]
 }
