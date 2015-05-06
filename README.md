@@ -15,7 +15,7 @@
 
 #### Или просто добавить скрипт на страницу
 
-    <script type="text/javascript" src="build/gauge.min.js"></script>
+    <script type="text/javascript" src="gauge.min.js"></script>
 
 ## Начало использования
 

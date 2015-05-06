@@ -1,5 +1,7 @@
 function gauge(params) {
 
+//Функции перевода в декартовы координаты и рисования цветного отрезка
+
   function polarToDecart(centerX, centerY, radius, angleInDegrees) {
     var angleInRadians = (angleInDegrees-90) * Math.PI / 180;
     return {
@@ -19,6 +21,7 @@ function gauge(params) {
     return d;
   }
 
+//Рисование стрелки
 
   function drawArrow(radius, arrowWidth) {
     var points = [
@@ -27,11 +30,15 @@ function gauge(params) {
     return points;
   }
 
+//Функция для присовения более одного атрибута сразу
+
   function setAttributes(el, attrs) {
     for(var key in attrs) {
       el.setAttribute(key, attrs[key]);
     }
   }
+
+//Значения по умолчанию
 
   this.values = {
     tags: [0,1,2,3,4,5,6,7,8,9],
@@ -42,10 +49,12 @@ function gauge(params) {
     degrees: false
   };
 
+//Сбор парметров
   for (a in params) {
     this.values[a] = params[a];
   }
 
+//Отрисовка и расстановка элементов
   var gaugeWrap = document.createElement('div'),
       gaugeArrow = document.createElementNS("http://www.w3.org/2000/svg", 'svg'),
       gaugePolygon = document.createElementNS("http://www.w3.org/2000/svg", 'polygon'),
@@ -91,12 +100,9 @@ function gauge(params) {
   var radius = this.values.radius,
       divisionPoints = this.values.tags.length,
       labelsCounter = (divisionPoints-1)*this.values.divisionSep + divisionPoints;
-      // angle = -210/57.3;
       angle = -210/57.3;
       step = (4*Math.PI/3) / labelsCounter, // 4/3 - for 240 deg gauge
       k = 0;
-
-      console.log(step);
 
   division.style.width = radius*2 +40 + 'px';
   division.style.height = radius*2 + 'px';
@@ -122,6 +128,8 @@ function gauge(params) {
   } else {
     this.values.inside = 0
   }
+
+  //Расстановка лейблов
 
   for (var i=0; i<labelsCounter; i++) {
     var clone = dot.cloneNode(true);
@@ -172,7 +180,7 @@ function gauge(params) {
     angle += step;
   }
 
-
+// Метод изменения значения
 
   this.setValue = function(type, value) {
     var entry = (this.values.tags.indexOf(value) != -1)
