@@ -136,6 +136,9 @@ function gauge(params) {
       k = k+1;
       clone.appendChild(tag);
       special = true;
+      if (this.values.inside == 20) {
+        tag.style.left = '-30px';
+      }
     }
 
     division.appendChild(clone);
