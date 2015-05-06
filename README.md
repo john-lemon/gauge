@@ -10,41 +10,53 @@
 
 ### npm
 
-<pre>npm install https://github.com/john-lemon/gauge.git </pre>
+    npm install https://github.com/john-lemon/gauge.git
 
 ### Или просто добавить скрипт на страницу
 
-<pre><script type="text/javascript" src="build/gauge.min.js"></script> </pre>
+    <script type="text/javascript" src="build/gauge.min.js"></script>
 
 ## Начало использования
 
 Простое добавление в конец тега <body>
 
-<pre>gauge = new gauge() </pre>
+    gauge = new gauge()
 
 Для добавления в DOM-элемент необходимо указать его id
 
-<pre>gauge = new gauge({
-  block: 'blockId'
-}) </pre>
+    gauge = new gauge({
+      block: 'blockId'
+    })
 
 ## Параметры
 
 Набор лейблов для отображения и количество промежуточных точек
 
-    gauge = new gauge({  tags: ['Tag', 'Second Tag', 'Third Tag', 'Last Tag']   divisionSep: 19})
+    gauge = new gauge({
+      tags: ['Tag', 'Second Tag', 'Third Tag', 'Last Tag']
+      divisionSep: 19
+    })
 
 Выбор радиуса шкалы
 
-    gauge = new gauge({  radius: 100 })
+    gauge = new gauge({
+      radius: 100
+    })
 
 Отображение шкалы в градусах, а также отображение меток внутри и снаружи
 
-    gauge = new gauge({  degrees: true   inside: true})
+    gauge = new gauge({
+      degrees: true   inside: true
+    })
 
 ### Значения по умолчанию
 
-    tags: [0,1,2,3,4,5,6,7,8,9], radius: 160, divisionSep: 9, arrowWidth: 8, inside: false, degrees: false
+    tags: [0,1,2,3,4,5,6,7,8,9],
+    radius: 160,
+    divisionSep: 9,
+    arrowWidth: 8,
+    inside: false,
+    degrees: false
 
 ## Методы
 
