@@ -1,0 +1,11 @@
+{
+  "name": "gauge",
+  "version": "0.0.1",
+  "homepage": "https://github.com/john-lemon/gauge",
+  "authors": [
+    "Roman Dmiterko] <dmiterko35@gmail.com>"
+  ],
+  "description": "Just simple gauge",
+  "scripts": ["dist/gauge.min.js"],
+  "styles": ["dist/gaude.min.js"],
+}
