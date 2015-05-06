@@ -24,6 +24,7 @@
     "component.json",
     "index.html",
     "gulpfile.js",
-    "package.json"
+    "package.json",
+    "src"
   ]
 }
