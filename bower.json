@@ -20,6 +20,10 @@
     "bower_components",
     "test",
     "tests",
-    "example"
+    "example",
+    "component.json",
+    "index.html",
+    "gulpfile.js",
+    "package.json"
   ]
 }
