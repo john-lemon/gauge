@@ -1,18 +1,19 @@
 # gauge.js
 
 Простая библиотека для отображения значений на шкале.
+Примеры из readme в действии: http://john-lemon.github.io/gauge/
 
 ## Установка
 
-### Bower
+#### Bower
 
     bower install https://github.com/john-lemon/gauge.git
 
-### npm
+#### npm
 
     npm install https://github.com/john-lemon/gauge.git
 
-### Или просто добавить скрипт на страницу
+#### Или просто добавить скрипт на страницу
 
     <script type="text/javascript" src="build/gauge.min.js"></script>
 
@@ -49,7 +50,7 @@
       degrees: true   inside: true
     })
 
-### Значения по умолчанию
+#### Значения по умолчанию
 
     tags: [0,1,2,3,4,5,6,7,8,9],
     radius: 160,
@@ -72,4 +73,5 @@
 
 Например:
 
-    gauge.setValue('string','5') // повернет стрелку к значению '5'gauge.setValue('deg','60') // повернет стрелку на 60 градусов
+    gauge.setValue('string','5') // повернет стрелку к значению '5'
+    gauge.setValue('deg','60') // повернет стрелку на 60 градусов
