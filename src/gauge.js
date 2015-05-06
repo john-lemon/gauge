@@ -91,9 +91,12 @@ function gauge(params) {
   var radius = this.values.radius,
       divisionPoints = this.values.tags.length,
       labelsCounter = (divisionPoints-1)*this.values.divisionSep + divisionPoints;
-      angle = 210,
+      // angle = -210/57.3;
+      angle = -210/57.3;
       step = (4*Math.PI/3) / labelsCounter, // 4/3 - for 240 deg gauge
       k = 0;
+
+      console.log(step);
 
   division.style.width = radius*2 +40 + 'px';
   division.style.height = radius*2 + 'px';
